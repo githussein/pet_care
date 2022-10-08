@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pet_care/presentation/color_manager.dart';
-import 'package:pet_care/presentation/font_manager.dart';
-import 'package:pet_care/presentation/style_manager.dart';
-import 'package:pet_care/presentation/values_manager.dart';
+import './color_manager.dart';
+import './font_manager.dart';
+import './style_manager.dart';
+import './values_manager.dart';
 
 ThemeData getAppTheme() {
   return ThemeData(
