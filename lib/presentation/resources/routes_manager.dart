@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_care/presentation/planned_meds/planned_meds.dart';
+import 'package:pet_care/presentation/resources/strings_manager.dart';
 import 'package:pet_care/presentation/schedule_activity/schedule_activity.dart';
 import 'package:pet_care/presentation/schedule_meds/schedule_meds.dart';
 import 'package:pet_care/presentation/splash/splash.dart';
@@ -32,7 +33,7 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => const Scaffold(
               body: Center(
-                child: Text('We are lost here!'),
+                child: Text(StringManager.undefinedRoute),
               ),
             ));
   }
