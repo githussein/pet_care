@@ -10,6 +10,8 @@ class PlannedMedsView extends StatefulWidget {
 class _PlannedMedsViewState extends State<PlannedMedsView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Center(child: Text('your planned meds...')),
+    );
   }
 }

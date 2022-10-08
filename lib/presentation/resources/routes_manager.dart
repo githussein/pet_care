@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pet_care/presentation/planned_meds/planned_meds.dart';
-import 'package:pet_care/presentation/resources/strings_manager.dart';
-import 'package:pet_care/presentation/schedule_activity/schedule_activity.dart';
-import 'package:pet_care/presentation/schedule_meds/schedule_meds.dart';
-import 'package:pet_care/presentation/splash/splash.dart';
+import '../planned_meds/planned_meds.dart';
+import '../resources/strings_manager.dart';
+import '../schedule_activity/schedule_activity.dart';
+import '../schedule_meds/schedule_meds.dart';
+import '../splash/splash.dart';
 
 class Routes {
   static const String splash = '/';

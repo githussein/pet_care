@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../presentation/resources/routes_manager.dart';
 import '../presentation/resources/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
-  MyApp._internal(); //private named constructor
+  const MyApp._internal(); //private named constructor
 
-  static final MyApp instance = MyApp._internal(); //singleton
+  static const MyApp instance = MyApp._internal(); //singleton
 
   factory MyApp() => instance; //return same instance every time
 
@@ -16,6 +17,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splash,
       theme: getAppTheme(),
     );
   }
