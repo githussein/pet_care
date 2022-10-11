@@ -14,9 +14,9 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  PageController _pageController = PageController(initialPage: 0);
-  int _curentIndex = 0;
-  late final List<SliderObject> sliderList = _getSliderData();
+  final PageController _pageController = PageController(initialPage: 0);
+  int _currentIndex = 0;
+  late final List<SliderObject> _sliderList = _getSliderData();
 
   List<SliderObject> _getSliderData() => [
         SliderObject(
@@ -38,7 +38,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorManager.white,
-        elevation: AppSize.s4,
+        elevation: AppSize.s0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: ColorManager.white,
           statusBarBrightness: Brightness.dark,
@@ -47,18 +47,109 @@ class _OnboardingViewState extends State<OnboardingView> {
       ),
       body: PageView.builder(
           controller: _pageController,
-          itemCount: sliderList.length,
-          onPageChanged: (index) => setState(() => _curentIndex = index),
+          itemCount: _sliderList.length,
+          onPageChanged: (index) => setState(() => _currentIndex = index),
           itemBuilder: (context, index) {
-            return OnboardingPage(sliderList[index]);
+            return OnboardingPage(_sliderList[index]);
           }),
+      bottomSheet: Container(
+        color: ColorManager.white,
+        height: AppSize.s100,
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  StringManager.skip,
+                  style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.end,
+                ),
+              ),
+            ),
+            _getBottomSheetWidget(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _getBottomSheetWidget() {
+    return Container(
+      color: ColorManager.accent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          //backward arrow
+          Padding(
+            padding: const EdgeInsets.all(AppSize.s12),
+            child: GestureDetector(
+              onTap: () {
+                _pageController.animateToPage(
+                  _getPreviousIndex(),
+                  duration: const Duration(milliseconds: DurationManager.d300),
+                  curve: Curves.easeIn,
+                );
+              },
+              child: const SizedBox(
+                height: AppSize.s20,
+                width: AppSize.s20,
+                child: Icon(Icons.arrow_back_ios),
+              ),
+            ),
+          ),
+          // circle indicator
+          Row(
+            children: [
+              for (int i = 0; i < _sliderList.length; i++)
+                Padding(
+                  padding: const EdgeInsets.all(AppSize.s8),
+                  child: _getProperCircle(i),
+                )
+            ],
+          ),
+          // forward arrow
+          Padding(
+            padding: const EdgeInsets.all(AppSize.s12),
+            child: GestureDetector(
+              onTap: () {
+                _pageController.animateToPage(
+                  _getNextIndex(),
+                  duration: const Duration(milliseconds: DurationManager.d300),
+                  curve: Curves.easeIn,
+                );
+              },
+              child: const SizedBox(
+                height: AppSize.s20,
+                width: AppSize.s20,
+                child: Icon(Icons.arrow_forward_ios),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  int _getPreviousIndex() =>
+      _currentIndex - 1 < 0 ? _sliderList.length - 1 : _currentIndex - 1;
+
+  int _getNextIndex() =>
+      _currentIndex + 1 == _sliderList.length ? 0 : _currentIndex + 1;
+
+  Widget _getProperCircle(int index) {
+    return Container(
+      height: AppSize.s4,
+      width: AppSize.s12,
+      color: index == _currentIndex ? ColorManager.primary : ColorManager.grey,
     );
   }
 }
 
 class OnboardingPage extends StatelessWidget {
-  SliderObject _sliderObject;
-  OnboardingPage(this._sliderObject, {Key? key}) : super(key: key);
+  final SliderObject _sliderObject;
+  const OnboardingPage(this._sliderObject, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
