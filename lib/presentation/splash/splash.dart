@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goHome() {
-    Navigator.pushReplacementNamed(context, Routes.plannedMeds);
+    Navigator.pushReplacementNamed(context, Routes.onboarding);
   }
 
   @override

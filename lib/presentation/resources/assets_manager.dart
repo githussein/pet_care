@@ -5,5 +5,5 @@ class ImageAssets {
 
   static const String dogIcon = '$imagePath/dog.svg';
   static const String scheduleIcon = '$imagePath/schedule.svg';
-  static const String chartICon = '$imagePath/chart.svg';
+  static const String chartIcon = '$imagePath/chart.svg';
 }
