@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pet_care/presentation/resources/assets_manager.dart';
-import 'package:pet_care/presentation/resources/color_manager.dart';
-import 'package:pet_care/presentation/resources/values_manager.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../resources/assets_manager.dart';
+import '../resources/color_manager.dart';
+import '../resources/values_manager.dart';
 import '../resources/strings_manager.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -36,6 +37,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: ColorManager.white,
         elevation: AppSize.s4,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: ColorManager.white,
@@ -47,7 +49,9 @@ class _OnboardingViewState extends State<OnboardingView> {
           controller: _pageController,
           itemCount: sliderList.length,
           onPageChanged: (index) => setState(() => _curentIndex = index),
-          itemBuilder: (context, index) {}),
+          itemBuilder: (context, index) {
+            return OnboardingPage(sliderList[index]);
+          }),
     );
   }
 }
@@ -79,6 +83,7 @@ class OnboardingPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSize.s60),
+        SvgPicture.asset(_sliderObject.image),
       ],
     );
   }

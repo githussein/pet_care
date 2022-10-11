@@ -13,4 +13,5 @@ class StringManager {
       'Set reminders and add dosage details';
   static const String onboardingSubtitle3 =
       'See how things worked out for previous plans';
+  static const String skip = 'Skip';
 }

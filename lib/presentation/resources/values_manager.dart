@@ -8,4 +8,5 @@ class AppSize {
   static const double s24 = 24;
   static const double s40 = 40;
   static const double s60 = 60;
+  static const double s100 = 100;
 }
